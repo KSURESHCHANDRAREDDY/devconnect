@@ -11,6 +11,7 @@ import eventRoutes from './routes/eventRoutes.js'
 import techtalkRoutes from './routes/techtalkRoutes.js'
 import techUpdateRoutes from './routes/techUpdateRoutes.js'
 import otpRoutes from './routes/otpRoutes.js'
+import { verifyMailTransport } from './controllers/otpController.js'
 
 dotenv.config()
 
@@ -23,6 +24,8 @@ const allowedOrigins = [
 app.use(cors({ origin: allowedOrigins, credentials: true }))
 app.use(cookieParser())
 app.use(express.json({ limit: '1mb' }))
+
+verifyMailTransport()
 
 app.get('/api/health', (req,res)=> res.json({ ok: true }))
 app.get('/', (req,res)=> res.send('✅ Backend running'))
